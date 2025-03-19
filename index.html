@@ -26,7 +26,7 @@
         }
 
         body {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--background);
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(0, 255, 0, 0.15) 0%, transparent 40%),
@@ -39,9 +39,11 @@
 
         header {
             background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(15,15,15,0.9) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--primary);
             color: var(--text);
-            padding: 0.8rem;
+            padding: 1rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -171,12 +173,13 @@
         }
 
         .emergency-container {
-            background: var(--dark-panel);
-            border: 2px solid var(--primary);
-            border-radius: 10px;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
             width: 100%;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -315,19 +318,20 @@
 
         .emergency-card {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--primary);
-            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 15px;
             width: 100%;
             max-width: 300px;
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .emergency-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0, 255, 0, 0.2);
         }
 
         .emergency-card h3 {
@@ -377,25 +381,25 @@
             background: linear-gradient(to right, var(--alert), #ff7043);
             color: white;
             border: none;
-            border-radius: 50px;
-            padding: 15px 30px;
+            border-radius: 30px;
+            padding: 16px 32px;
             font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 61, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 20px rgba(255, 61, 0, 0.3);
             margin: 20px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .call-emergency-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 61, 0, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 61, 0, 0.4);
         }
 
         .emergency-services {
@@ -408,14 +412,16 @@
 
         .service-btn {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--primary);
-            border-radius: 5px;
+            border: none;
+            border-radius: 8px;
             padding: 10px 15px;
             color: var(--primary);
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .service-btn:hover {
@@ -589,12 +595,13 @@
         }
         
         .location-container {
-            background: var(--dark-panel);
-            border: 2px solid var(--secondary);
-            border-radius: 10px;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
             width: 100%;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(15, 224, 224, 0.3);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -619,13 +626,13 @@
             background: linear-gradient(to right, var(--secondary), #0cc);
             color: black;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             padding: 10px 20px;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -648,18 +655,19 @@
         }
         
         .provider-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--secondary);
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 15px;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .provider-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(15, 224, 224, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0, 255, 0, 0.2);
         }
         
         .provider-header {
@@ -779,12 +787,13 @@
         }
         
         .videos-container {
-            background: var(--dark-panel);
-            border: 2px solid var(--accent);
-            border-radius: 10px;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
             width: 100%;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(246, 55, 236, 0.3);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -808,16 +817,17 @@
         }
         
         .video-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--accent);
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(246, 55, 236, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0, 255, 0, 0.2);
         }
         
         .video-thumbnail {
@@ -887,14 +897,15 @@
         
         .modal-content {
             position: relative;
-            background: var(--dark-panel);
-            border: 2px solid var(--primary);
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 16px;
             margin: 5% auto;
             padding: 20px;
             width: 90%;
             max-width: 800px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
         
         .modal-close {
@@ -929,17 +940,18 @@
         }
         
         .form-control {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid var(--primary);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            transition: all 0.2s ease;
             color: var(--text);
             font-family: 'Exo 2', sans-serif;
         }
         
         .form-control:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.25);
         }
         
         .video-frame {
@@ -986,7 +998,7 @@
                         <div class="emergency-card">
                             <h3>Medical Guidance</h3>
                             <p>Speak with our AI medical assistant for immediate guidance</p>
-                            <button class="service-btn" onclick="openAgentChat()">Speak with AI</button>
+                            <button class="service-btn" onclick="window.open('https://resqai.life/assistant', '_blank')">Speak with AI</button>
                         </div>
                         
                         <div class="emergency-card">
@@ -1167,19 +1179,23 @@
     </script>
 
     <script>
-        // Handle emergency response
+        // Handle emergency response with realistic ambulance status updates
         function triggerEmergencyResponse(type) {
             let responseText = '';
             
             switch(type) {
                 case 'ambulance':
-                    responseText = 'Ambulance services have been notified and are en route to your location. Estimated arrival time: 3-5 minutes. Please stay calm and prepare for their arrival.';
+                    // Start ambulance simulation
+                    startAmbulanceStatusUpdates();
+                    responseText = 'Emergency ambulance service initiated. Locating nearest available units. Please stay on the line.';
                     break;
                 case 'hospital':
-                    responseText = 'Locating nearest emergency medical facilities. Several hospitals identified within 5 miles of your location. Navigation instructions have been sent to your device.';
+                    responseText = 'Locating nearest emergency medical facilities in Pune and Mumbai. Several hospitals identified within 5 km of your location: Aditya Birla Memorial Hospital (1.2 km), Ruby Hall Clinic (2.3 km), and Jehangir Hospital (2.8 km). Navigation instructions have been sent to your device.';
                     break;
                 case 'all':
-                    responseText = 'FULL EMERGENCY PROTOCOL ACTIVATED. Ambulance dispatched. Nearest hospital alerted. First responders en route. Estimated arrival: 3-5 minutes. Please stay on the line for further instructions.';
+                    // Start ambulance simulation
+                    startAmbulanceStatusUpdates();
+                    responseText = 'FULL EMERGENCY PROTOCOL ACTIVATED. Ambulance dispatched from Aditya Birla Memorial Hospital. Emergency department at the hospital has been alerted. First responders en route. Estimated arrival: 3-4 minutes. Please stay on the line for further instructions.';
                     break;
                 default:
                     responseText = 'Emergency services have been notified. Please stay calm and follow the instructions provided.';
@@ -1188,7 +1204,7 @@
             document.getElementById('response-text').innerText = responseText;
             document.getElementById('response-message').style.display = 'block';
             
-            // In a real app, this would trigger an actual emergency call API
+            // Log the emergency type
             console.log(`Emergency response triggered: ${type}`);
         }
         
@@ -1197,20 +1213,8 @@
         }
         
         function openAgentChat() {
-            // Attempt to click the D-ID agent button
-            const agentButton = document.querySelector('.did-agent-button');
-            if (agentButton) {
-                agentButton.click();
-            } else {
-                // If button not found, show a message
-                document.getElementById('response-text').innerText = 'Connecting to medical AI assistant...';
-                document.getElementById('response-message').style.display = 'block';
-                
-                // Hide after 3 seconds
-                setTimeout(() => {
-                    document.getElementById('response-message').style.display = 'none';
-                }, 3000);
-            }
+            // Redirect to resqai.life/assistant
+            window.location.href = 'https://resqai.life/assistant';
         }
         
         // Check if D-ID agent exists
@@ -1239,97 +1243,138 @@
         // Sample data for healthcare providers
         const healthcareProviders = [
             {
-                name: "Dr. Sarah Johnson",
+                name: "Dr. Priya Sharma",
                 specialty: "Emergency Medicine",
-                hospital: "City General Hospital",
-                distance: "1.2 miles",
-                address: "123 Medical Center Dr.",
-                phone: "(555) 123-4567",
+                hospital: "Aditya Birla Memorial Hospital",
+                distance: "1.2 km",
+                address: "Thergaon, Chinchwad, Pune 411033",
+                phone: "020-3061 7555",
                 availability: "Available Now",
                 rating: 4.9,
                 avatar: "👩‍⚕️"
             },
             {
-                name: "Dr. Michael Chen",
+                name: "Dr. Rajesh Mehta",
                 specialty: "Trauma Surgery",
-                hospital: "Memorial Healthcare",
-                distance: "2.3 miles",
-                address: "456 Hospital Blvd.",
-                phone: "(555) 234-5678",
+                hospital: "Ruby Hall Clinic",
+                distance: "2.3 km",
+                address: "40, Sassoon Road, Pune 411001",
+                phone: "020-2616 3391",
                 availability: "Available in 20 min",
                 rating: 4.8,
                 avatar: "👨‍⚕️"
             },
             {
-                name: "Dr. Emily Rodriguez",
+                name: "Dr. Anjali Desai",
                 specialty: "Family Medicine",
-                hospital: "Community Health Center",
-                distance: "0.8 miles",
-                address: "789 Wellness Ave.",
-                phone: "(555) 345-6789",
+                hospital: "KEM Hospital",
+                distance: "0.8 km",
+                address: "Rasta Peth, Pune 411011",
+                phone: "020-2621 2600",
                 availability: "Available Now",
                 rating: 4.7,
                 avatar: "👩‍⚕️"
             },
             {
-                name: "Dr. James Wilson",
+                name: "Dr. Vijay Patil",
                 specialty: "Cardiology",
-                hospital: "Heart & Vascular Institute",
-                distance: "3.1 miles",
-                address: "321 Cardiac Way",
-                phone: "(555) 456-7890",
+                hospital: "Sahyadri Hospital",
+                distance: "3.1 km",
+                address: "Karve Road, Pune 411004",
+                phone: "020-6721 5000",
                 availability: "Available in 30 min",
                 rating: 4.9,
                 avatar: "👨‍⚕️"
             },
             {
-                name: "Dr. Aisha Patel",
+                name: "Dr. Neha Patel",
                 specialty: "Pediatrics",
-                hospital: "Children's Medical Center",
-                distance: "1.9 miles",
-                address: "654 Kid's Health Rd.",
-                phone: "(555) 567-8901",
+                hospital: "Bharati Hospital",
+                distance: "1.9 km",
+                address: "Dhankawadi, Pune 411043",
+                phone: "020-4071 4700",
                 availability: "Available Now",
                 rating: 4.8,
                 avatar: "👩‍⚕️"
             }
         ];
         
-        // Sample data for hospitals
+        // Sample data for hospitals in Pune and Mumbai
         const hospitals = [
             {
-                name: "City General Hospital",
-                type: "Level I Trauma Center",
-                distance: "1.2 miles",
-                address: "123 Medical Center Dr.",
-                phone: "(555) 123-4567",
+                name: "Aditya Birla Memorial Hospital",
+                type: "Multi-Specialty Hospital",
+                distance: "1.2 km",
+                address: "Thergaon, Chinchwad, Pune 411033",
+                phone: "020-3061 7555",
                 emergencyWait: "15 min",
                 beds: "Available",
                 rating: 4.6,
-                avatar: "🏥"
+                avatar: "🏥",
+                city: "Pune"
             },
             {
-                name: "Memorial Healthcare",
-                type: "Level II Trauma Center",
-                distance: "2.3 miles",
-                address: "456 Hospital Blvd.",
-                phone: "(555) 234-5678",
+                name: "Ruby Hall Clinic",
+                type: "Trauma Center",
+                distance: "2.3 km",
+                address: "40, Sassoon Road, Pune 411001",
+                phone: "020-2616 3391",
                 emergencyWait: "25 min",
                 beds: "Limited",
                 rating: 4.5,
-                avatar: "🏥"
+                avatar: "🏥",
+                city: "Pune"
             },
             {
-                name: "Community Health Center",
-                type: "Urgent Care",
-                distance: "0.8 miles",
-                address: "789 Wellness Ave.",
-                phone: "(555) 345-6789",
+                name: "Jehangir Hospital",
+                type: "Multi-Specialty Hospital",
+                distance: "2.8 km",
+                address: "32, Sassoon Road, Pune 411001",
+                phone: "020-6681 9999",
                 emergencyWait: "10 min",
                 beds: "Available",
-                rating: 4.3,
-                avatar: "🏥"
+                rating: 4.7,
+                avatar: "🏥",
+                city: "Pune"
+            },
+            {
+                name: "Lilavati Hospital",
+                type: "Level I Trauma Center",
+                distance: "35 km",
+                address: "Bandra West, Mumbai 400050",
+                phone: "022-2675 1000",
+                emergencyWait: "20 min",
+                beds: "Available",
+                rating: 4.8,
+                avatar: "🏥",
+                city: "Mumbai"
+            },
+            {
+                name: "Fortis Hospital",
+                type: "Multi-Specialty Hospital",
+                distance: "38 km",
+                address: "Mulund, Mumbai 400078",
+                phone: "022-6799 9999",
+                emergencyWait: "15 min",
+                beds: "Available",
+                rating: 4.6,
+                avatar: "🏥",
+                city: "Mumbai"
             }
+        ];
+        
+        // Mock ambulance status messages
+        const ambulanceStatusMessages = [
+            "Locating nearest available ambulance units in your area...",
+            "Found 3 ambulance units within 5 km of your location.",
+            "Dispatching nearest ambulance from Aditya Birla Memorial Hospital (1.2 km away).",
+            "Ambulance dispatched. ETA to your location: 4 minutes.",
+            "Ambulance en route. Current location: Chinchwad junction, 2 minutes away.",
+            "Ambulance has arrived at your location. Medical team is preparing to assist you.",
+            "Medical team is assessing the situation and providing immediate care.",
+            "Preparing for transport to Aditya Birla Memorial Hospital Emergency Department.",
+            "En route to hospital. ETA: 6 minutes. Emergency department has been notified.",
+            "Arriving at hospital. Emergency team standing by to receive patient."
         ];
         
         // Get user's location
@@ -1346,11 +1391,17 @@
                         // Update button text
                         getLocationBtn.innerHTML = '<span>✅</span> Location Accessed';
                         
+                        // Filter for Pune hospitals first, then other hospitals
+                        const nearbyHospitals = hospitals.filter(h => h.city === "Pune");
+                        
                         // Display healthcare providers
                         displayProviders(healthcareProviders);
                         
                         // Show map (in a real app, would use Google Maps or similar)
                         displayMap(latitude, longitude);
+                        
+                        // Show nearby hospitals notification
+                        showNearbyHospitalsNotification(nearbyHospitals);
                         
                         // Update the vital signs with real data
                         updateVitalSigns(latitude, longitude);
@@ -1384,6 +1435,87 @@
             }
         });
         
+        // Show notification for nearby hospitals
+        function showNearbyHospitalsNotification(hospitals) {
+            if (hospitals.length > 0) {
+                const hospitalsList = hospitals.map(h => h.name).join(", ");
+                
+                document.getElementById('response-text').innerHTML = `
+                    <strong>Nearby Hospitals Found:</strong><br>
+                    ${hospitalsList}<br><br>
+                    These hospitals are within 5 km of your location and have emergency services available.
+                `;
+                document.getElementById('response-message').style.display = 'block';
+                
+                // Hide after 8 seconds
+                setTimeout(() => {
+                    document.getElementById('response-message').style.display = 'none';
+                }, 8000);
+            }
+        }
+        
+        // Ambulance status update simulation
+        function startAmbulanceStatusUpdates() {
+            let step = 0;
+            
+            // Initial update
+            updateAmbulanceStatus(step);
+            
+            // Schedule subsequent updates
+            const intervalId = setInterval(() => {
+                step++;
+                
+                if (step < ambulanceStatusMessages.length) {
+                    updateAmbulanceStatus(step);
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 5000); // Update every 5 seconds
+        }
+        
+        // Update ambulance status message
+        function updateAmbulanceStatus(step) {
+            document.getElementById('response-text').innerText = ambulanceStatusMessages[step];
+        }
+        
+        // Display map with Indian location context
+        function displayMap(latitude, longitude) {
+            // In a real app, this would initialize a map with the user's location
+            // For this demo, we'll show a simple representation with Indian context
+            mapPlaceholder.style.display = 'none';
+            mapDiv.style.display = 'block';
+            
+            // Create a basic representation of a map (in real app, use Google Maps)
+            mapDiv.innerHTML = `
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0a; color: var(--text);">
+                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Current Location: Pune, Maharashtra, India</div>
+                    <div style="width: 80%; height: 70%; position: relative; background: #1a1a1a; border-radius: 8px; overflow: hidden;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 2rem;">📍</div>
+                        <div style="position: absolute; top: 40%; left: 60%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; top: 30%; left: 40%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; top: 60%; left: 30%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem; color: var(--text);">Map data © 2025</div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9rem; text-align: center;">
+                        Nearest Hospitals:<br>
+                        Aditya Birla Memorial Hospital (1.2 km)<br>
+                        Ruby Hall Clinic (2.3 km)<br>
+                        Jehangir Hospital (2.8 km)
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Update vital signs with Indian context
+        function updateVitalSigns(latitude, longitude) {
+            // In a real app, this would calculate actual distances and times
+            // For demo, we're using realistic sample data for Pune, India
+            
+            document.querySelector('.vital-sign:nth-child(1) .value').innerText = '3-5 min';
+            document.querySelector('.vital-sign:nth-child(2) .value').innerText = '1.2 km';
+            document.querySelector('.vital-sign:nth-child(3) .value').innerText = '4';
+        }
+        
         // Display healthcare providers
         function displayProviders(providers) {
             providersContainer.innerHTML = '';
@@ -1414,38 +1546,6 @@
                 
                 providersContainer.appendChild(card);
             });
-        }
-        
-        // Display map
-        function displayMap(latitude, longitude) {
-            // In a real app, this would initialize a map with the user's location
-            // For this demo, we'll just show a simple representation
-            mapPlaceholder.style.display = 'none';
-            mapDiv.style.display = 'block';
-            
-            // Create a basic representation of a map (in real app, use Google Maps)
-            mapDiv.innerHTML = `
-                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0a; color: var(--text);">
-                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Current Location: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}</div>
-                    <div style="width: 80%; height: 70%; position: relative; background: #1a1a1a; border-radius: 8px; overflow: hidden;">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 2rem;">📍</div>
-                        <div style="position: absolute; top: 40%; left: 60%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
-                        <div style="position: absolute; top: 30%; left: 40%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
-                        <div style="position: absolute; top: 60%; left: 30%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
-                        <div style="position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem; color: var(--text);">Map data © 2025</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Update vital signs with more realistic data
-        function updateVitalSigns(latitude, longitude) {
-            // In a real app, this would calculate actual distances and times
-            // For demo, we're using realistic sample data
-            
-            document.querySelector('.vital-sign:nth-child(1) .value').innerText = '2-4 min';
-            document.querySelector('.vital-sign:nth-child(2) .value').innerText = '0.8 mi';
-            document.querySelector('.vital-sign:nth-child(3) .value').innerText = '8';
         }
         
         // Get directions to an address
