@@ -97,13 +97,13 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
             border-radius: 16px;
             margin: 0 1rem 1rem;
-            padding: 1rem;
+            padding: 0; /* Remove padding to give full space to agent */
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             position: relative;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            min-height: 500px; /* Ensure minimum height for the container */
+            min-height: 550px; /* Increased minimum height */
         }
 
         @media (min-width: 768px) {
@@ -111,7 +111,7 @@
                 margin: 0 auto 1rem;
                 max-width: 800px;
                 height: auto;
-                aspect-ratio: 4/3; /* Better aspect ratio for desktop */
+                aspect-ratio: 16/9; /* Standard video aspect ratio */
             }
             
             header h1 {
@@ -131,7 +131,7 @@
         @media (max-width: 767px) {
             .agent-container {
                 height: auto;
-                aspect-ratio: 1/1.3; /* Taller aspect ratio for mobile */
+                aspect-ratio: 9/16; /* Mobile video aspect ratio */
                 margin-bottom: 4rem; /* Space for footer and emergency button */
             }
         }
@@ -151,24 +151,36 @@
         }
 
         #loading-message {
-            text-align: center;
-            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-weight: 300;
             color: var(--primary);
             background-color: rgba(255, 255, 255, 0.7);
             padding: 10px 20px;
             border-radius: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            z-index: 5;
+            text-align: center;
         }
 
+        /* This is the element that will contain the agent iframe */
         #did-agent-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 400px; /* Minimum height for the agent */
             position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        /* Make sure iframe fills container */
+        #did-agent-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .pulse {
@@ -177,15 +189,15 @@
 
         @keyframes pulse {
             0% {
-                transform: scale(0.95);
+                transform: translate(-50%, -50%) scale(0.95);
                 opacity: 0.7;
             }
             50% {
-                transform: scale(1);
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
             100% {
-                transform: scale(0.95);
+                transform: translate(-50%, -50%) scale(0.95);
                 opacity: 0.7;
             }
         }
@@ -244,7 +256,7 @@
             <div class="agent-status" id="agent-status">Initializing</div>
             <div id="loading-message" class="pulse">Connecting to medical AI assistant...</div>
             
-            <!-- DID Conversational Agent Embed -->
+            <!-- The container for D-ID agent - must be kept empty for proper rendering -->
             <div id="did-agent-container"></div>
         </div>
     </main>
@@ -255,48 +267,43 @@
         <p>&copy; 2023 Resq - Advanced AI-powered Emergency Response System</p>
     </footer>
 
+    <!-- Direct embed of D-ID agent script with container specification -->
+    <script
+        type="module"
+        src="https://agent.d-id.com/v1/index.js"
+        data-name="did-agent"
+        data-mode="fabio"
+        data-client-key="Z29vZ2xlLW9hdXRoMnwxMDk0NzgxMzEyOTI5NTAzOTgxODk6MlB1cGZoLW5LX05OTXNzUXJ5NDBF"
+        data-agent-id="agt_7bfMxLl-" 
+        data-container="did-agent-container"
+        data-monitor="true">
+    </script>
+
     <script>
-        // Script to load the D-ID agent and handle potential errors
-        window.addEventListener('DOMContentLoaded', (event) => {
-            console.log('DOM fully loaded, loading D-ID agent');
-            try {
-                const script = document.createElement('script');
-                script.type = 'module';
-                script.src = 'https://agent.d-id.com/v1/index.js';
-                script.setAttribute('data-name', 'did-agent');
-                script.setAttribute('data-mode', 'fabio');
-                script.setAttribute('data-client-key', 'Z29vZ2xlLW9hdXRoMnwxMDk0NzgxMzEyOTI5NTAzOTgxODk6MlB1cGZoLW5LX05OTXNzUXJ5NDBF');
-                script.setAttribute('data-agent-id', 'agt_7bfMxLl-');
-                script.setAttribute('data-monitor', 'true');
-                script.setAttribute('data-container', 'did-agent-container');
-                
-                script.onload = function() {
-                    console.log('D-ID script loaded successfully');
-                    document.getElementById('loading-message').textContent = 'Agent ready';
-                    document.getElementById('loading-message').classList.remove('pulse');
+        // Additional script to handle UI status updates
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check every second if the D-ID agent iframe has been created
+            const checkInterval = setInterval(() => {
+                const iframe = document.querySelector('#did-agent-container iframe');
+                if (iframe) {
+                    // Agent iframe found, update UI
+                    document.getElementById('loading-message').style.display = 'none';
                     document.getElementById('agent-status').textContent = 'Active';
                     document.getElementById('agent-status').style.backgroundColor = 'rgba(212, 237, 218, 0.8)';
                     document.getElementById('agent-status').style.color = '#155724';
+                    clearInterval(checkInterval);
+                }
+            }, 1000);
 
-                    // Hide loading message after 2 seconds
-                    setTimeout(() => {
-                        document.getElementById('loading-message').style.display = 'none';
-                    }, 2000);
-                };
-                
-                script.onerror = function() {
-                    console.error('Failed to load D-ID script');
-                    document.getElementById('loading-message').textContent = 'Connection issue. Please try again.';
+            // Set a timeout in case the agent doesn't load
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                if (document.getElementById('loading-message').style.display !== 'none') {
+                    document.getElementById('loading-message').textContent = 'Connection issue. Please try on deployed site.';
                     document.getElementById('loading-message').classList.remove('pulse');
                     document.getElementById('agent-status').textContent = 'Offline';
-                };
-                
-                document.body.appendChild(script);
-            } catch (error) {
-                console.error('Error initializing D-ID agent:', error);
-                document.getElementById('loading-message').textContent = 'Error initializing agent: ' + error.message;
-                document.getElementById('loading-message').classList.remove('pulse');
-            }
+                }
+            }, 15000);
         });
 
         // Emergency button functionality
