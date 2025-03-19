@@ -580,6 +580,373 @@
                 opacity: 0;
             }
         }
+
+        /* New styles for location-based services */
+        .location-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+        
+        .location-container {
+            background: var(--dark-panel);
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(15, 224, 224, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .location-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        
+        .location-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            text-shadow: 0 0 5px rgba(15, 224, 224, 0.5);
+        }
+        
+        .location-btn {
+            background: linear-gradient(to right, var(--secondary), #0cc);
+            color: black;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .location-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(15, 224, 224, 0.5);
+        }
+        
+        .medical-providers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        
+        .provider-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(15, 224, 224, 0.4);
+        }
+        
+        .provider-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .provider-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .provider-info h3 {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .provider-info p {
+            color: var(--text);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+        
+        .provider-details {
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .provider-details p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .provider-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .provider-btn {
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-btn {
+            background: var(--secondary);
+            color: black;
+            border: none;
+        }
+        
+        .contact-btn:hover {
+            background: #0cc;
+            box-shadow: 0 0 10px rgba(15, 224, 224, 0.5);
+        }
+        
+        .directions-btn {
+            background: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .directions-btn:hover {
+            background: rgba(15, 224, 224, 0.1);
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 300px;
+            background: #0a0a0a;
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .map-placeholder i {
+            font-size: 3rem;
+            color: var(--secondary);
+        }
+        
+        .map-placeholder p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        /* Styles for emergency videos section */
+        .videos-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+        
+        .videos-container {
+            background: var(--dark-panel);
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(246, 55, 236, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .videos-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(246, 55, 236, 0.5);
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .video-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(246, 55, 236, 0.4);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 140px;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-thumbnail .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-icon {
+            opacity: 1;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-info h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin: 0 0 10px 0;
+        }
+        
+        .video-info p {
+            color: var(--text);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            position: relative;
+            background: var(--dark-panel);
+            border: 2px solid var(--primary);
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .form-control {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text);
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+        
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -647,6 +1014,123 @@
                             <div class="value">5</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location-Based Medical Services Section -->
+        <div class="location-section">
+            <div class="location-container">
+                <div class="location-header">
+                    <h2>Find Healthcare Providers Near You</h2>
+                    <button class="location-btn" id="getLocationBtn">
+                        <span>📍</span> Use My Location
+                    </button>
+                </div>
+                
+                <div class="map-container">
+                    <div class="map-placeholder" id="mapPlaceholder">
+                        <i>🗺️</i>
+                        <p>Allow location access to view nearby medical providers</p>
+                    </div>
+                    <div id="map" style="width: 100%; height: 100%; display: none;"></div>
+                </div>
+                
+                <div class="medical-providers" id="providersContainer">
+                    <!-- Provider cards will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Emergency Training Videos Section -->
+        <div class="videos-section">
+            <div class="videos-container">
+                <div class="videos-header">
+                    <h2>Emergency Medical Training Videos</h2>
+                </div>
+                
+                <div class="videos-grid">
+                    <div class="video-card" onclick="openVideoModal('gRVWy8GameE', 'CPR Instructions for Adults')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/gRVWy8GameE/hqdefault.jpg" alt="CPR Instructions">
+                            <div class="play-icon">▶️</div>
+                        </div>
+                        <div class="video-info">
+                            <h3>CPR Instructions for Adults</h3>
+                            <p>Learn the proper technique for performing life-saving CPR on adults</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" onclick="openVideoModal('oswDpwzbAV8', 'How to Use an AED')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/oswDpwzbAV8/hqdefault.jpg" alt="How to Use an AED">
+                            <div class="play-icon">▶️</div>
+                        </div>
+                        <div class="video-info">
+                            <h3>How to Use an AED</h3>
+                            <p>Step-by-step guide on using an Automated External Defibrillator</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" onclick="openVideoModal('GJymRzt_H9g', 'Heimlich Maneuver Instructions')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/GJymRzt_H9g/hqdefault.jpg" alt="Heimlich Maneuver">
+                            <div class="play-icon">▶️</div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Heimlich Maneuver Instructions</h3>
+                            <p>Learn how to perform the Heimlich maneuver on a choking person</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" onclick="openVideoModal('WjjGZm7vSus', 'First Aid for Severe Bleeding')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/WjjGZm7vSus/hqdefault.jpg" alt="Severe Bleeding First Aid">
+                            <div class="play-icon">▶️</div>
+                        </div>
+                        <div class="video-info">
+                            <h3>First Aid for Severe Bleeding</h3>
+                            <p>How to properly control and treat severe bleeding emergencies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Contact Doctor -->
+        <div id="contactModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('contactModal')">&times;</span>
+                <h2 style="color: var(--secondary); margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">Contact Healthcare Provider</h2>
+                <form class="contact-form" id="doctorContactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Your Phone</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="location-btn" style="width: fit-content; margin-top: 10px;">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal for Video Player -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('videoModal')">&times;</span>
+                <h2 id="videoTitle" style="color: var(--accent); margin-bottom: 20px; font-family: 'Orbitron', sans-serif;"></h2>
+                <div id="videoContainer">
+                    <iframe id="videoFrame" class="video-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -745,6 +1229,309 @@
                 }
             }, 5000);
         });
+        
+        // Location-based services and doctor finder
+        const getLocationBtn = document.getElementById('getLocationBtn');
+        const providersContainer = document.getElementById('providersContainer');
+        const mapPlaceholder = document.getElementById('mapPlaceholder');
+        const mapDiv = document.getElementById('map');
+        
+        // Sample data for healthcare providers
+        const healthcareProviders = [
+            {
+                name: "Dr. Sarah Johnson",
+                specialty: "Emergency Medicine",
+                hospital: "City General Hospital",
+                distance: "1.2 miles",
+                address: "123 Medical Center Dr.",
+                phone: "(555) 123-4567",
+                availability: "Available Now",
+                rating: 4.9,
+                avatar: "👩‍⚕️"
+            },
+            {
+                name: "Dr. Michael Chen",
+                specialty: "Trauma Surgery",
+                hospital: "Memorial Healthcare",
+                distance: "2.3 miles",
+                address: "456 Hospital Blvd.",
+                phone: "(555) 234-5678",
+                availability: "Available in 20 min",
+                rating: 4.8,
+                avatar: "👨‍⚕️"
+            },
+            {
+                name: "Dr. Emily Rodriguez",
+                specialty: "Family Medicine",
+                hospital: "Community Health Center",
+                distance: "0.8 miles",
+                address: "789 Wellness Ave.",
+                phone: "(555) 345-6789",
+                availability: "Available Now",
+                rating: 4.7,
+                avatar: "👩‍⚕️"
+            },
+            {
+                name: "Dr. James Wilson",
+                specialty: "Cardiology",
+                hospital: "Heart & Vascular Institute",
+                distance: "3.1 miles",
+                address: "321 Cardiac Way",
+                phone: "(555) 456-7890",
+                availability: "Available in 30 min",
+                rating: 4.9,
+                avatar: "👨‍⚕️"
+            },
+            {
+                name: "Dr. Aisha Patel",
+                specialty: "Pediatrics",
+                hospital: "Children's Medical Center",
+                distance: "1.9 miles",
+                address: "654 Kid's Health Rd.",
+                phone: "(555) 567-8901",
+                availability: "Available Now",
+                rating: 4.8,
+                avatar: "👩‍⚕️"
+            }
+        ];
+        
+        // Sample data for hospitals
+        const hospitals = [
+            {
+                name: "City General Hospital",
+                type: "Level I Trauma Center",
+                distance: "1.2 miles",
+                address: "123 Medical Center Dr.",
+                phone: "(555) 123-4567",
+                emergencyWait: "15 min",
+                beds: "Available",
+                rating: 4.6,
+                avatar: "🏥"
+            },
+            {
+                name: "Memorial Healthcare",
+                type: "Level II Trauma Center",
+                distance: "2.3 miles",
+                address: "456 Hospital Blvd.",
+                phone: "(555) 234-5678",
+                emergencyWait: "25 min",
+                beds: "Limited",
+                rating: 4.5,
+                avatar: "🏥"
+            },
+            {
+                name: "Community Health Center",
+                type: "Urgent Care",
+                distance: "0.8 miles",
+                address: "789 Wellness Ave.",
+                phone: "(555) 345-6789",
+                emergencyWait: "10 min",
+                beds: "Available",
+                rating: 4.3,
+                avatar: "🏥"
+            }
+        ];
+        
+        // Get user's location
+        getLocationBtn.addEventListener('click', () => {
+            getLocationBtn.innerHTML = '<span>⏳</span> Requesting Location...';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // Success
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        
+                        // Update button text
+                        getLocationBtn.innerHTML = '<span>✅</span> Location Accessed';
+                        
+                        // Display healthcare providers
+                        displayProviders(healthcareProviders);
+                        
+                        // Show map (in a real app, would use Google Maps or similar)
+                        displayMap(latitude, longitude);
+                        
+                        // Update the vital signs with real data
+                        updateVitalSigns(latitude, longitude);
+                    },
+                    (error) => {
+                        // Error
+                        console.error("Error getting location:", error);
+                        getLocationBtn.innerHTML = '<span>❌</span> Location Access Denied';
+                        
+                        // Still show sample data
+                        displayProviders(healthcareProviders);
+                        
+                        // Show error message in map placeholder
+                        mapPlaceholder.innerHTML = `
+                            <i style="color: var(--alert);">⚠️</i>
+                            <p>Unable to access your location. Please enable location services and try again.</p>
+                        `;
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                getLocationBtn.innerHTML = '<span>❌</span> Geolocation Not Available';
+                mapPlaceholder.innerHTML = `
+                    <i style="color: var(--alert);">⚠️</i>
+                    <p>Your browser doesn't support geolocation. Please try using a different browser.</p>
+                `;
+            }
+        });
+        
+        // Display healthcare providers
+        function displayProviders(providers) {
+            providersContainer.innerHTML = '';
+            
+            providers.forEach(provider => {
+                const card = document.createElement('div');
+                card.className = 'provider-card';
+                
+                card.innerHTML = `
+                    <div class="provider-header">
+                        <div class="provider-avatar">${provider.avatar}</div>
+                        <div class="provider-info">
+                            <h3>${provider.name}</h3>
+                            <p>${provider.specialty} • ${provider.rating}★</p>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <p>🏥 ${provider.hospital}</p>
+                        <p>📍 ${provider.distance} • ${provider.address}</p>
+                        <p>📞 ${provider.phone}</p>
+                        <p>⏰ ${provider.availability}</p>
+                    </div>
+                    <div class="provider-actions">
+                        <button class="provider-btn contact-btn" onclick="openContactModal('${provider.name}', '${provider.specialty}')">Contact</button>
+                        <button class="provider-btn directions-btn" onclick="getDirections('${provider.address}')">Directions</button>
+                    </div>
+                `;
+                
+                providersContainer.appendChild(card);
+            });
+        }
+        
+        // Display map
+        function displayMap(latitude, longitude) {
+            // In a real app, this would initialize a map with the user's location
+            // For this demo, we'll just show a simple representation
+            mapPlaceholder.style.display = 'none';
+            mapDiv.style.display = 'block';
+            
+            // Create a basic representation of a map (in real app, use Google Maps)
+            mapDiv.innerHTML = `
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0a; color: var(--text);">
+                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Current Location: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}</div>
+                    <div style="width: 80%; height: 70%; position: relative; background: #1a1a1a; border-radius: 8px; overflow: hidden;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 2rem;">📍</div>
+                        <div style="position: absolute; top: 40%; left: 60%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; top: 30%; left: 40%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; top: 60%; left: 30%; color: var(--secondary); font-size: 1.5rem;">🏥</div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem; color: var(--text);">Map data © 2025</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Update vital signs with more realistic data
+        function updateVitalSigns(latitude, longitude) {
+            // In a real app, this would calculate actual distances and times
+            // For demo, we're using realistic sample data
+            
+            document.querySelector('.vital-sign:nth-child(1) .value').innerText = '2-4 min';
+            document.querySelector('.vital-sign:nth-child(2) .value').innerText = '0.8 mi';
+            document.querySelector('.vital-sign:nth-child(3) .value').innerText = '8';
+        }
+        
+        // Get directions to an address
+        function getDirections(address) {
+            // In a real app, this would open a maps application with directions
+            // For this demo, we'll just show a message
+            
+            document.getElementById('response-text').innerText = `Getting directions to ${address}. If this were a real app, we would open your maps application with turn-by-turn directions.`;
+            document.getElementById('response-message').style.display = 'block';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                document.getElementById('response-message').style.display = 'none';
+            }, 5000);
+        }
+        
+        // Open contact modal for a doctor
+        function openContactModal(doctorName, specialty) {
+            const modal = document.getElementById('contactModal');
+            const form = document.getElementById('doctorContactForm');
+            
+            // Set the doctor's info in the form (hidden field or in a submit handler)
+            // In a real app, this would be properly stored for form submission
+            
+            modal.style.display = 'block';
+            
+            // Handle form submission
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                
+                // In a real app, this would submit the form to a server
+                // For this demo, we'll just show a success message
+                
+                document.getElementById('response-text').innerText = `Your message has been sent to ${doctorName}. They will contact you shortly regarding your inquiry.`;
+                document.getElementById('response-message').style.display = 'block';
+                
+                // Close the modal
+                closeModal('contactModal');
+                
+                // Clear the form
+                form.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('response-message').style.display = 'none';
+                }, 5000);
+            };
+        }
+        
+        // Open video modal
+        function openVideoModal(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            videoTitle.innerText = title;
+            videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            
+            modal.style.display = 'block';
+        }
+        
+        // Close modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            
+            if (modalId === 'videoModal') {
+                const videoFrame = document.getElementById('videoFrame');
+                videoFrame.src = ''; // Stop the video
+            }
+            
+            modal.style.display = 'none';
+        }
+        
+        // Close modals when clicking outside of them
+        window.onclick = function(event) {
+            const contactModal = document.getElementById('contactModal');
+            const videoModal = document.getElementById('videoModal');
+            
+            if (event.target === contactModal) {
+                closeModal('contactModal');
+            }
+            
+            if (event.target === videoModal) {
+                closeModal('videoModal');
+            }
+        };
     </script>
 </body>
 </html> 
