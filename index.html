@@ -16,6 +16,7 @@
             --dark-panel: #111; /* Dark gray for panels */
             --text: #fff; /* White text */
             --accent: #f637ec; /* Magenta accent */
+            --alert: #ff3d00; /* Emergency alert color */
         }
 
         * {
@@ -89,7 +90,7 @@
             border: 1px solid var(--primary);
             border-radius: 5px;
             margin: 0 auto 1.5rem;
-            max-width: 600px;
+            max-width: 800px;
             backdrop-filter: blur(5px);
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
             position: relative;
@@ -128,19 +129,53 @@
             margin-bottom: 0;
         }
 
-        .agent-wrapper {
+        .agent-popup-hint {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--primary);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            max-width: 200px;
+            text-align: center;
+            z-index: 99;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .agent-popup-hint::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--primary);
+        }
+
+        .emergency-panel {
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
             position: relative;
         }
 
-        .agent-container {
+        .emergency-container {
             background: var(--dark-panel);
             border: 2px solid var(--primary);
             border-radius: 10px;
             width: 100%;
-            padding: 0;
+            padding: 20px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
             position: relative;
             display: flex;
@@ -150,10 +185,9 @@
             overflow: hidden;
             min-height: 550px;
             margin-bottom: 2rem;
-            position: relative;
         }
 
-        .agent-container::after {
+        .emergency-container::after {
             content: '';
             position: absolute;
             top: 0;
@@ -204,62 +238,192 @@
             border-right: 2px solid;
         }
 
-        /* Center the agent embedded content */
-        #did-agent-container {
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .emergency-content {
             position: relative;
+            z-index: 5;
             width: 100%;
-            height: 100%;
-            min-height: 500px;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .warning-pulse {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 61, 0, 0.2);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 20px;
+            animation: warning-pulse 2s infinite;
+        }
+
+        .warning-pulse::before {
+            content: '⚠️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+        }
+
+        @keyframes warning-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 61, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(255, 61, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 61, 0, 0);
+            }
+        }
+
+        .emergency-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .emergency-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 15px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .emergency-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        .emergency-card h3 {
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .emergency-card p {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .vital-signs {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .vital-sign {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .vital-sign h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .vital-sign .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .call-emergency-btn {
+            background: linear-gradient(to right, var(--alert), #ff7043);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 61, 0, 0.4);
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+
+        .call-emergency-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 61, 0, 0.6);
+        }
+
+        .emergency-services {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 10px;
+            width: 100%;
         }
 
-        #did-agent-container > div {
-            position: static !important;
-            width: 100% !important;
-            height: 100% !important;
+        .service-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            padding: 10px 15px;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        /* Hide the default D-ID popup button and force the interface to show inline */
-        .did-agent-wrapper {
-            position: static !important;
-            transform: none !important;
-            max-width: 100% !important;
-            max-height: 100% !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .did-agent-button {
-            display: none !important;
-        }
-        
-        .did-agent-interface {
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            position: static !important;
-            transform: none !important;
-            pointer-events: auto !important;
-            bottom: auto !important;
-            right: auto !important;
-            top: auto !important;
-            left: auto !important;
-            height: 100% !important;
-            width: 100% !important;
+        .service-btn:hover {
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
         @media (min-width: 768px) {
-            .agent-container {
-                margin: 0 auto 2rem;
-                aspect-ratio: 16/9;
-            }
-            
-            header h1 {
-                font-size: 2.2rem;
-            }
-            
             .intro h2 {
                 font-size: 1.8rem;
             }
@@ -267,66 +431,27 @@
             .intro p {
                 font-size: 1rem;
             }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .emergency-content {
+                gap: 30px;
+            }
         }
 
         @media (max-width: 767px) {
-            .agent-container {
-                height: auto;
-                aspect-ratio: 9/16;
-                margin-bottom: 4rem;
+            .emergency-options {
+                flex-direction: column;
+                align-items: center;
             }
-        }
 
-        .agent-status {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            border-radius: 15px;
-            font-size: 0.7rem;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-            z-index: 10;
-        }
-
-        #loading-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-weight: 400;
-            color: var(--primary);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px 25px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-            z-index: 5;
-            text-align: center;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(0.95);
-                opacity: 0.7;
-                box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0.95);
-                opacity: 0.7;
-                box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+            .agent-popup-hint {
+                bottom: 100px;
+                right: 20px;
+                max-width: 150px;
+                font-size: 0.7rem;
             }
         }
 
@@ -354,7 +479,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 0 15px rgba(246, 55, 236, 0.5);
-            z-index: 100;
+            z-index: 90;
             font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
@@ -368,18 +493,92 @@
             box-shadow: 0 0 25px rgba(246, 55, 236, 0.8);
         }
 
-        .grid-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(0deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            pointer-events: none;
-            z-index: 1;
+        #response-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--primary);
+            padding: 30px;
+            border-radius: 10px;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            max-width: 90%;
+        }
+
+        #response-message h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        #response-message p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .close-btn {
+            background: var(--primary);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: white;
+        }
+
+        .typing {
+            width: 5em;
+            height: 2em;
+            position: relative;
+            padding: 10px;
+            margin-left: 5px;
+            background: var(--primary);
+            border-radius: 20px;
+        }
+
+        .typing__dot {
+            float: left;
+            width: 8px;
+            height: 8px;
+            margin: 0 4px;
+            background: #000;
+            border-radius: 50%;
+            opacity: 0;
+            animation: loadingFade 1s infinite;
+        }
+
+        .typing__dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing__dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing__dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes loadingFade {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -395,33 +594,84 @@
     <main>
         <div class="intro">
             <h2>Emergency Medical Assistant</h2>
-            <p>Ask any medical questions or describe symptoms for immediate guidance</p>
+            <p>Ask any medical questions or describe symptoms for immediate guidance, or use our emergency services below</p>
         </div>
 
-        <div class="agent-wrapper">
-            <div class="agent-container">
+        <div class="emergency-panel">
+            <div class="emergency-container">
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
                 <div class="grid-lines"></div>
                 
-                <div class="agent-status" id="agent-status">Initializing</div>
-                <div id="loading-message" class="pulse">Connecting to medical AI assistant...</div>
-                
-                <!-- The container for D-ID agent -->
-                <div id="did-agent-container"></div>
+                <div class="emergency-content">
+                    <div class="warning-pulse"></div>
+                    <h2 class="section-title">Emergency Response System</h2>
+                    
+                    <div class="emergency-options">
+                        <div class="emergency-card">
+                            <h3>Ambulance Service</h3>
+                            <p>Dispatch medical professionals to your location immediately</p>
+                            <button class="service-btn" onclick="triggerEmergencyResponse('ambulance')">Request Ambulance</button>
+                        </div>
+                        
+                        <div class="emergency-card">
+                            <h3>Medical Guidance</h3>
+                            <p>Speak with our AI medical assistant for immediate guidance</p>
+                            <button class="service-btn" onclick="openAgentChat()">Speak with AI</button>
+                        </div>
+                        
+                        <div class="emergency-card">
+                            <h3>Hospital Locator</h3>
+                            <p>Find the nearest emergency room or medical facility</p>
+                            <button class="service-btn" onclick="triggerEmergencyResponse('hospital')">Find Hospital</button>
+                        </div>
+                    </div>
+                    
+                    <button class="call-emergency-btn" onclick="triggerEmergencyResponse('all')">
+                        <span>🚨</span> Emergency Assistance
+                    </button>
+                    
+                    <div class="vital-signs">
+                        <div class="vital-sign">
+                            <h4>Local EMS Response</h4>
+                            <div class="value">3-5 min</div>
+                        </div>
+                        <div class="vital-sign">
+                            <h4>Nearest Hospital</h4>
+                            <div class="value">2.3 mi</div>
+                        </div>
+                        <div class="vital-sign">
+                            <h4>Available Units</h4>
+                            <div class="value">5</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <button class="emergency-button" title="Emergency Mode">SOS</button>
+    <div class="agent-popup-hint">
+        Click the AI assistant icon to chat with Dr. ResQ
+    </div>
+
+    <div id="response-message">
+        <h3>Emergency Response Initiated</h3>
+        <p id="response-text">Emergency services have been notified and are en route to your location. Please stay on the line.</p>
+        <div class="typing">
+            <div class="typing__dot"></div>
+            <div class="typing__dot"></div>
+            <div class="typing__dot"></div>
+        </div>
+        <button class="close-btn" onclick="closeResponseMessage()">Close</button>
+    </div>
 
     <footer>
         <p>&copy; 2023 Resq - Advanced AI-powered Emergency Response System</p>
     </footer>
 
-    <!-- Direct embed of D-ID agent script with container specification and forced display mode -->
+    <!-- Direct embed of D-ID agent script -->
     <script
         type="module"
         src="https://agent.d-id.com/v1/index.js"
@@ -429,71 +679,71 @@
         data-mode="fabio"
         data-client-key="Z29vZ2xlLW9hdXRoMnwxMDk0NzgxMzEyOTI5NTAzOTgxODk6MlB1cGZoLW5LX05OTXNzUXJ5NDBF"
         data-agent-id="agt_7bfMxLl-" 
-        data-container="did-agent-container"
-        data-monitor="true"
-        data-auto-open="true">
+        data-monitor="true">
     </script>
 
     <script>
-        // Force the D-ID agent to display in the center
+        // Handle emergency response
+        function triggerEmergencyResponse(type) {
+            let responseText = '';
+            
+            switch(type) {
+                case 'ambulance':
+                    responseText = 'Ambulance services have been notified and are en route to your location. Estimated arrival time: 3-5 minutes. Please stay calm and prepare for their arrival.';
+                    break;
+                case 'hospital':
+                    responseText = 'Locating nearest emergency medical facilities. Several hospitals identified within 5 miles of your location. Navigation instructions have been sent to your device.';
+                    break;
+                case 'all':
+                    responseText = 'FULL EMERGENCY PROTOCOL ACTIVATED. Ambulance dispatched. Nearest hospital alerted. First responders en route. Estimated arrival: 3-5 minutes. Please stay on the line for further instructions.';
+                    break;
+                default:
+                    responseText = 'Emergency services have been notified. Please stay calm and follow the instructions provided.';
+            }
+            
+            document.getElementById('response-text').innerText = responseText;
+            document.getElementById('response-message').style.display = 'block';
+            
+            // In a real app, this would trigger an actual emergency call API
+            console.log(`Emergency response triggered: ${type}`);
+        }
+        
+        function closeResponseMessage() {
+            document.getElementById('response-message').style.display = 'none';
+        }
+        
+        function openAgentChat() {
+            // Attempt to click the D-ID agent button
+            const agentButton = document.querySelector('.did-agent-button');
+            if (agentButton) {
+                agentButton.click();
+            } else {
+                // If button not found, show a message
+                document.getElementById('response-text').innerText = 'Connecting to medical AI assistant...';
+                document.getElementById('response-message').style.display = 'block';
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('response-message').style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Check if D-ID agent exists
         window.addEventListener('DOMContentLoaded', () => {
-            // Check every second if the D-ID agent iframe has been created
-            const checkInterval = setInterval(() => {
-                const iframe = document.querySelector('#did-agent-container iframe');
-                if (iframe) {
-                    // Agent iframe found, update UI
-                    document.getElementById('loading-message').style.display = 'none';
-                    document.getElementById('agent-status').textContent = 'Active';
-                    document.getElementById('agent-status').style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-                    clearInterval(checkInterval);
-                    
-                    // Force any D-ID popup elements to be centered
-                    setTimeout(() => {
-                        const didInterface = document.querySelector('.did-agent-interface');
-                        const didWrapper = document.querySelector('.did-agent-wrapper');
-                        const didButton = document.querySelector('.did-agent-button');
-                        
-                        if (didInterface) {
-                            didInterface.style.position = 'static';
-                            didInterface.style.display = 'block';
-                            didInterface.style.visibility = 'visible';
-                            didInterface.style.opacity = '1';
-                            didInterface.style.transform = 'none';
-                            didInterface.style.width = '100%';
-                            didInterface.style.height = '100%';
-                        }
-                        
-                        if (didWrapper) {
-                            didWrapper.style.position = 'static';
-                            didWrapper.style.transform = 'none';
-                            didWrapper.style.maxWidth = '100%';
-                            didWrapper.style.maxHeight = '100%';
-                            didWrapper.style.width = '100%';
-                            didWrapper.style.height = '100%';
-                        }
-                        
-                        if (didButton) {
-                            didButton.style.display = 'none';
-                        }
-                    }, 1000);
-                }
-            }, 1000);
-
-            // Set a timeout in case the agent doesn't load
             setTimeout(() => {
-                clearInterval(checkInterval);
-                if (document.getElementById('loading-message').style.display !== 'none') {
-                    document.getElementById('loading-message').textContent = 'Connection issue. Please try on deployed site.';
-                    document.getElementById('loading-message').classList.remove('pulse');
-                    document.getElementById('agent-status').textContent = 'Offline';
+                const agentButton = document.querySelector('.did-agent-button');
+                if (!agentButton) {
+                    console.log('D-ID agent button not found');
+                } else {
+                    console.log('D-ID agent button found');
+                    // Hide popup hint after 10 seconds
+                    setTimeout(() => {
+                        document.querySelector('.agent-popup-hint').style.opacity = '0';
+                        document.querySelector('.agent-popup-hint').style.transition = 'opacity 1s ease';
+                    }, 10000);
                 }
-            }, 15000);
-        });
-
-        // Emergency button functionality
-        document.querySelector('.emergency-button').addEventListener('click', function() {
-            alert('Emergency mode activated. Connecting to priority assistance...');
-            // In a real app, this would trigger emergency protocols
+            }, 5000);
         });
     </script>
 </body>
